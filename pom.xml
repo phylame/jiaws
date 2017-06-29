@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>pw.phylame.util</groupId>
+        <artifactId>my-project</artifactId>
+        <version>1.0.2</version>
+    </parent>
+
+
+    <groupId>pw.phylame.jiaws</groupId>
+    <artifactId>jiaws-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Project Jiaws</name>
+    <inceptionYear>2016</inceptionYear>
+    <url>https://github.com/phylame/jiaws</url>
+    <description>Jiaws is another web server</description>
+
+    <scm>
+        <url>https://github.com/phylame/jiaws</url>
+        <connection>scm:git:https://github.com/phylame/jiaws.git</connection>
+        <developerConnection>scm:git:https://github.com/phylame/jiaws.git</developerConnection>
+    </scm>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+</project>

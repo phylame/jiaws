@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/jiaws.iml" filepath="$PROJECT_DIR$/jiaws.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jiaws-core/jiaws-core.iml" filepath="$PROJECT_DIR$/jiaws-core/jiaws-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jiaws-project.iml" filepath="$PROJECT_DIR$/jiaws-project.iml" />
     </modules>
   </component>
 </project>

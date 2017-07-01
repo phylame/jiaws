@@ -2,10 +2,10 @@ package pw.phylame.jiaws;
 
 import java.nio.channels.ByteChannel;
 
-public class BioHttpClient {
+public class BioHttpClientDraft {
     ByteChannel channel;
 
-    public BioHttpClient(ByteChannel channel) {
+    public BioHttpClientDraft(ByteChannel channel) {
         this.channel = channel;
     }
 

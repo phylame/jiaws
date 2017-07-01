@@ -2,9 +2,10 @@ package pw.phylame.jiaws;
 
 import java.io.PipedInputStream;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.SelectionKey;
 
-public class NioHttpClient {
+public class NioHttpClientDraft {
     PipedInputStream input;
     SelectionKey key;
 
@@ -22,8 +23,8 @@ public class NioHttpClient {
         // 3. end.
     }
 
-    // the parsing work, started when new data reached
-    void run() {
+    // the active parsing work, started when new data reached
+    void activeParse() {
         // 1. parsing http message from pipe
         // 2. do the business logic, eg: cgi, servlet, etc.
         // 3. write response to channel in selection key, if all written then goto step 4, else go to 6
@@ -31,5 +32,10 @@ public class NioHttpClient {
         // 5. close the connection, release related resources, end workflow.
         // 6. register write listener for writing event(channel is writable), next
         // 7. if keep connection alive then go to step 1, else end workflow.
+    }
+
+    // the passive parsing work
+    void passiveParse(ByteBuffer buffer) {
+
     }
 }

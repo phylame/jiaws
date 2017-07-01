@@ -33,7 +33,7 @@ public class NioConnector implements Closeable {
         channel.register(selector, SelectionKey.OP_ACCEPT);
     }
 
-    public void run() {
+    public void start() {
         try {
             while (!Thread.interrupted()) {
                 if (selector.select() == 0) {
@@ -86,7 +86,6 @@ public class NioConnector implements Closeable {
         assert sc != null : "BUG: since we are non-blocking";
         log.trace("accept new client: {}", sc.getRemoteAddress());
         sc.configureBlocking(false);
-
         clientManager.newClient(sc.register(key.selector(), SelectionKey.OP_READ));
     }
 
@@ -125,6 +124,6 @@ public class NioConnector implements Closeable {
     public static void main(String[] args) throws IOException {
         val cm = new ClientManager();
         val connector = new NioConnector(cm, new Http11Handler());
-        connector.run();
+        connector.start();
     }
 }

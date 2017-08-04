@@ -14,7 +14,7 @@ import static pw.phylame.jiaws.http.HttpUtils.isNumericChar;
 import static pw.phylame.jiaws.http.HttpUtils.valueOfHexchar;
 
 @Slf4j
-public class ActiveHttpRequest extends BaseHttpRequest implements ActiveProtocolParser {
+public class ActiveHttp11Request extends BaseHttpRequest implements ActiveProtocolParser {
 
     @Override
     public void parseData(InputStream in) throws ProtocolException {

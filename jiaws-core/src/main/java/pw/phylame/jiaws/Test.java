@@ -1,6 +1,6 @@
 package pw.phylame.jiaws;
 
-import pw.phylame.jiaws.http.PassiveHttpRequest;
+import pw.phylame.jiaws.http.PassiveHttp11Request;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,7 +11,7 @@ public class Test {
     public static void main(String[] args) throws IOException {
         FileInputStream fis = new FileInputStream("E:/tmp/1.txt");
         FileChannel channel = fis.getChannel();
-        PassiveHttpRequest request = new PassiveHttpRequest();
+        PassiveHttp11Request request = new PassiveHttp11Request();
 //        ActiveHttpRequest request = new ActiveHttpRequest();
 //        ServerSocket serverSocket = new ServerSocket(80);
 //        InputStream sis = serverSocket.accept().getInputStream();

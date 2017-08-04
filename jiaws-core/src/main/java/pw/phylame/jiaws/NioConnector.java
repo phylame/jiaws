@@ -16,14 +16,12 @@ public class NioConnector implements Closeable {
     private final ByteBuffer buffer;
     private final ServerSocketChannel channel;
     private final ClientManager clientManager;
-    private final Http11Handler protocolHandler;
 
-    public NioConnector(@NonNull ClientManager clientManager, Http11Handler protocolHandler) throws IOException {
+    public NioConnector(@NonNull ClientManager clientManager) throws IOException {
         selector = Selector.open();
         buffer = ByteBuffer.allocate(8192);
         channel = ServerSocketChannel.open();
         this.clientManager = clientManager;
-        this.protocolHandler = protocolHandler;
         init();
     }
 
@@ -86,7 +84,7 @@ public class NioConnector implements Closeable {
         assert sc != null : "BUG: since we are non-blocking";
         log.trace("accept new client: {}", sc.getRemoteAddress());
         sc.configureBlocking(false);
-        clientManager.newClient(sc.register(key.selector(), SelectionKey.OP_READ));
+        clientManager.newClient(key.selector(), sc);
     }
 
     // deliver data to corresponding client
@@ -97,7 +95,7 @@ public class NioConnector implements Closeable {
             n = sc.read(buffer);
         } catch (IOException e) {
             if (log.isTraceEnabled()) {
-                log.trace(String.format("connection reset by client: %s", sc.getRemoteAddress()), e);
+                log.trace("connection reset by client: %s" + sc.getRemoteAddress(), e);
             }
             n = -1;
         }
@@ -105,7 +103,6 @@ public class NioConnector implements Closeable {
             log.trace("close channel when eof: {}", sc.getRemoteAddress());
             clientManager.closeClient(key);
             buffer.clear();
-            sc.close();
             return;
         }
         assert n != 0 : "BUG: since we are non-blocking";
@@ -123,7 +120,7 @@ public class NioConnector implements Closeable {
 
     public static void main(String[] args) throws IOException {
         val cm = new ClientManager();
-        val connector = new NioConnector(cm, new Http11Handler());
+        val connector = new NioConnector(cm);
         connector.start();
     }
 }

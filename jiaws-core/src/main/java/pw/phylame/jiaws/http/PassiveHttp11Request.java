@@ -13,7 +13,7 @@ import static pw.phylame.jiaws.http.HttpUtils.isNumericChar;
 import static pw.phylame.jiaws.http.HttpUtils.valueOfHexchar;
 
 @Slf4j
-public class PassiveHttpRequest extends BaseHttpRequest implements PassiveProtocolParser {
+public class PassiveHttp11Request extends BaseHttpRequest implements PassiveProtocolParser {
     // private data for parsing
     private int line = 1;
     private byte firstChar = -1;
